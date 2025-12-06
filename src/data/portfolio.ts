@@ -121,16 +121,22 @@ blockchain implementations to AI-powered documentation systems.`,
 };
 
 export const asciiArt = `
-  ╔══════════════════════════════════════════════════════════════╗
-  ║                                                              ║
-  ║                    SHANNEN SAIKIA                            ║
-  ║                                                              ║
-  ║          Engineering Student @ VIT                          ║
-  ║          AI/ML Enthusiast | Problem Solver                  ║
-  ║          Tech Explorer | Blockchain Developer               ║
-  ║                                                              ║
-  ╚══════════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════════════════╗
+║                                                                        ║
+║                          SHANNEN SAIKIA                                ║
+║                                                                        ║
+║                    Engineering Student @ VIT                           ║
+║           AI/ML Enthusiast  •  Problem Solver  •  Tech Explorer        ║
+║                       Blockchain Developer                             ║
+║                                                                        ║
+║────────────────────────────────────────────────────────────────────────║
+║                                                                        ║
+║  Languages:   TypeScript • Python • Rust • Go • JavaScript • C++       ║
+║  Focus Areas: Machine Learning • Blockchain • Web3 • Data Science      ║
+║  Location:    Mumbai, India                                            ║
+║                                                                        ║
+╚════════════════════════════════════════════════════════════════════════╝
 
-  Welcome to my terminal portfolio!
-  Type 'help' to see available commands.
+Welcome to my interactive terminal portfolio!
+Type 'help' to see all available commands and explore my projects.
 `;

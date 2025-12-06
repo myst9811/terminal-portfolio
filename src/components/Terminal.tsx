@@ -209,12 +209,13 @@ export default function Terminal() {
                       </div>
                     )}
                     <div
-                      className={`mt-2 whitespace-pre-wrap text-sm sm:text-base ${
+                      className={`mt-2 whitespace-pre-wrap ${
                         entry.output.type === 'error'
                           ? 'text-red-400'
-                          : 'text-green-300/90'
+                          : entry.command === '' && index === 0
+                          ? 'text-green-400 text-sm'
+                          : 'text-green-300/90 text-sm sm:text-base'
                       }`}
-                      style={{ fontSize: entry.command === '' && index === 0 ? '0.7rem' : undefined }}
                     >
                       {typeof entry.output.content === 'string'
                         ? entry.output.content
