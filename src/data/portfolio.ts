@@ -121,19 +121,16 @@ blockchain implementations to AI-powered documentation systems.`,
 };
 
 export const asciiArt = `
-╔═══════════════════════════════════════════════════════════════════════╗
-║                                                                       ║
-║   ███████╗██╗  ██╗ █████╗ ███╗   ██╗███╗   ██╗███████╗███╗   ██╗      ║
-║   ██╔════╝██║  ██║██╔══██╗████╗  ██║████╗  ██║██╔════╝████╗  ██║      ║
-║   ███████╗███████║███████║██╔██╗ ██║██╔██╗ ██║█████╗  ██╔██╗ ██║      ║
-║   ╚════██║██╔══██║██╔══██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║╚██╗██║      ║
-║   ███████║██║  ██║██║  ██║██║ ╚████║██║ ╚████║███████╗██║ ╚████║      ║
-║   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═══╝      ║
-║                                                                       ║
-║               Engineering Student | AI/ML Enthusiast                  ║
-║                   Problem Solver | Tech Explorer                      ║
-║                                                                       ║
-╚═══════════════════════════════════════════════════════════════════════╝
+  ╔══════════════════════════════════════════════════════════════╗
+  ║                                                              ║
+  ║                    SHANNEN SAIKIA                            ║
+  ║                                                              ║
+  ║          Engineering Student @ VIT                          ║
+  ║          AI/ML Enthusiast | Problem Solver                  ║
+  ║          Tech Explorer | Blockchain Developer               ║
+  ║                                                              ║
+  ╚══════════════════════════════════════════════════════════════╝
 
-Welcome to my terminal portfolio! Type 'help' to see available commands.
+  Welcome to my terminal portfolio!
+  Type 'help' to see available commands.
 `;
