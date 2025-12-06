@@ -99,7 +99,7 @@ blockchain implementations to AI-powered documentation systems.`,
   ],
 
   contact: {
-    email: "shannen.saikia@example.com", // Update with your actual email
+    email: "shannen.saikia@gmail.com", 
     location: "Mumbai, India",
     github: "myst9811",
   },
@@ -110,7 +110,7 @@ blockchain implementations to AI-powered documentation systems.`,
     instagram: "https://instagram.com/shannen_1197",
   },
 
-  resume: "#", // Add your resume link here
+  resume: "https://drive.google.com/file/d/1tiGbnId9denD3693wvMVifmbAeaGbTIu/view?usp=drive_link", // Add your resume link here
 
   achievements: [
     "18 Public GitHub Repositories",
