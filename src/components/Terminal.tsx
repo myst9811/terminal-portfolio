@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { getCommand, getAllCommandNames } from '../commands';
 import { asciiArt } from '../data/portfolio';
 import type { HistoryEntry } from '../types';
+import Avatar from './Avatar';
+import MatrixRain from './MatrixRain';
 
 export default function Terminal() {
   const [input, setInput] = useState('');
@@ -157,34 +159,76 @@ export default function Terminal() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-4 sm:p-8">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3 }}
-        className="w-full max-w-5xl"
-      >
-        {/* Terminal Window */}
-        <div
-          className="bg-black/90 backdrop-blur-sm rounded-lg shadow-2xl border border-gray-800 overflow-hidden"
-          onClick={handleTerminalClick}
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-4 sm:p-8 overflow-hidden">
+      {/* Matrix Rain Background */}
+      <MatrixRain />
+
+      <div className="relative z-10 w-full max-w-5xl flex flex-col items-center gap-6">
+        {/* Avatar Section */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col items-center gap-4"
         >
-          {/* Terminal Header/Title Bar */}
-          <div className="bg-gray-800/50 px-4 py-3 flex items-center justify-between border-b border-gray-700">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 cursor-pointer transition-colors"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 cursor-pointer transition-colors"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 cursor-pointer transition-colors"></div>
+          <Avatar />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-center"
+          >
+            <h1 className="text-2xl sm:text-3xl font-bold text-green-400 tracking-wider glow-text">
+              SHANNEN SAIKIA
+            </h1>
+            <p className="text-sm sm:text-base text-green-300/80 mt-1">
+              Engineering Student @ VIT
+            </p>
+          </motion.div>
+        </motion.div>
+
+        {/* Terminal Window */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="w-full"
+        >
+          {/* Terminal Window */}
+          <div
+            className="bg-black/90 backdrop-blur-sm rounded-lg shadow-2xl border border-green-500/20 overflow-hidden terminal-glow"
+            onClick={handleTerminalClick}
+          >
+            {/* Terminal Header/Title Bar */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="bg-gray-800/50 px-4 py-3 flex items-center justify-between border-b border-green-500/20"
+            >
+              <div className="flex items-center gap-2">
+                <div className="flex gap-2">
+                  <motion.div
+                    whileHover={{ scale: 1.2, boxShadow: '0 0 8px rgba(239, 68, 68, 0.5)' }}
+                    className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 cursor-pointer transition-colors"
+                  />
+                  <motion.div
+                    whileHover={{ scale: 1.2, boxShadow: '0 0 8px rgba(234, 179, 8, 0.5)' }}
+                    className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 cursor-pointer transition-colors"
+                  />
+                  <motion.div
+                    whileHover={{ scale: 1.2, boxShadow: '0 0 8px rgba(34, 197, 94, 0.5)' }}
+                    className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 cursor-pointer transition-colors"
+                  />
+                </div>
+                <span className="text-xs text-gray-400 ml-4 hidden sm:inline">
+                  visitor@shannen-portfolio:~$
+                </span>
               </div>
-              <span className="text-xs text-gray-400 ml-4 hidden sm:inline">
-                visitor@shannen-portfolio:~$
-              </span>
-            </div>
-            <div className="text-xs text-gray-500 font-semibold">
-              Terminal - Portfolio
-            </div>
-          </div>
+              <div className="text-xs text-green-400/70 font-semibold">
+                Terminal - Portfolio
+              </div>
+            </motion.div>
 
           {/* Terminal Content */}
           <div
@@ -193,34 +237,58 @@ export default function Terminal() {
           >
             {/* Output History */}
             <div className="space-y-4 mb-4">
-              <AnimatePresence>
+              <AnimatePresence mode="popLayout">
                 {history.map((entry, index) => (
                   <motion.div
                     key={`${entry.timestamp.getTime()}-${index}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ opacity: 0, x: -20, filter: 'blur(4px)' }}
+                    animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, x: 20, filter: 'blur(4px)' }}
+                    transition={{
+                      duration: 0.3,
+                      ease: "easeOut",
+                      delay: index * 0.05
+                    }}
                   >
                     {entry.command && (
-                      <div className="flex items-start gap-2 text-green-400">
-                        <span className="text-green-500 font-bold">$</span>
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.1 }}
+                        className="flex items-start gap-2 text-green-400"
+                      >
+                        <motion.span
+                          animate={{
+                            textShadow: [
+                              '0 0 4px rgba(34, 197, 94, 0.5)',
+                              '0 0 8px rgba(34, 197, 94, 0.8)',
+                              '0 0 4px rgba(34, 197, 94, 0.5)',
+                            ]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          className="text-green-500 font-bold"
+                        >
+                          $
+                        </motion.span>
                         <span className="text-green-300">{entry.command}</span>
-                      </div>
+                      </motion.div>
                     )}
-                    <div
+                    <motion.div
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 }}
                       className={`mt-2 whitespace-pre-wrap ${
                         entry.output.type === 'error'
-                          ? 'text-red-400'
+                          ? 'text-red-400 glow-text-red'
                           : entry.command === '' && index === 0
-                          ? 'text-green-400 text-sm'
+                          ? 'text-green-400 text-sm glow-text'
                           : 'text-green-300/90 text-sm sm:text-base'
                       }`}
                     >
                       {typeof entry.output.content === 'string'
                         ? entry.output.content
                         : entry.output.content}
-                    </div>
+                    </motion.div>
                   </motion.div>
                 ))}
               </AnimatePresence>
@@ -253,13 +321,21 @@ export default function Terminal() {
           </div>
         </div>
 
-        {/* Hint Text */}
-        <div className="mt-4 text-center text-gray-500 text-xs sm:text-sm">
-          <p>Press <kbd className="px-2 py-1 bg-gray-800 rounded text-gray-300">Tab</kbd> for autocomplete •
-          <kbd className="px-2 py-1 bg-gray-800 rounded text-gray-300 mx-1">↑/↓</kbd> for history •
-          Type <span className="text-green-400">help</span> to start</p>
-        </div>
-      </motion.div>
+          {/* Hint Text */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="mt-4 text-center text-gray-500 text-xs sm:text-sm"
+          >
+            <p>
+              Press <kbd className="px-2 py-1 bg-gray-800 rounded text-gray-300 border border-green-500/20">Tab</kbd> for autocomplete •
+              <kbd className="px-2 py-1 bg-gray-800 rounded text-gray-300 mx-1 border border-green-500/20">↑/↓</kbd> for history •
+              Type <span className="text-green-400 glow-text">help</span> to start
+            </p>
+          </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }
