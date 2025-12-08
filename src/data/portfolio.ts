@@ -4,7 +4,7 @@ export const portfolioData = {
   location: "Mumbai, India",
   university: "VIT (Vellore Institute of Technology)",
 
-  about: `Hi! I'm Shannen Saikia, an engineering student at VIT with a passion for building, breaking,
+  about: `Hi! I'm Shannen, an engineering student at VIT with a passion for building, breaking,
 and exploring technology. I'm an enthusiastic problem solver with a keen interest in AI/ML and mathematics.
 
 I love working on challenging projects that involve blockchain technology, artificial intelligence,
@@ -91,7 +91,7 @@ blockchain implementations to AI-powered documentation systems.`,
 
   education: [
     {
-      degree: "B.Tech in Engineering",
+      degree: "B.Tech in Computer Science Engineering",
       institution: "VIT (Vellore Institute of Technology)",
       period: "Present",
       description: "Focusing on Computer Science, AI/ML, and Blockchain technologies",
@@ -125,7 +125,7 @@ export const asciiArt = `
 ║                                                                        ║
 ║                          SHANNEN SAIKIA                                ║
 ║                                                                        ║
-║                    Engineering Student @ VIT                           ║
+║            Computer Science Engineering Student @ VIT                  ║
 ║           AI/ML Enthusiast  •  Problem Solver  •  Tech Explorer        ║
 ║                       Blockchain Developer                             ║
 ║                                                                        ║

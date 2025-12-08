@@ -319,7 +319,7 @@ export default function Terminal() {
               </motion.span>
             </div>
           </div>
-        </div>
+          </div>
 
           {/* Hint Text */}
           <motion.div
