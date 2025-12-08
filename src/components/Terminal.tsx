@@ -6,7 +6,7 @@ import { getCommand, getAllCommandNames } from '../commands';
 import { asciiArt } from '../data/portfolio';
 import type { HistoryEntry } from '../types';
 import Avatar from './Avatar';
-import MatrixRain from './MatrixRain';
+import InteractiveBackground from './InteractiveBackground';
 
 export default function Terminal() {
   const [input, setInput] = useState('');
@@ -160,8 +160,8 @@ export default function Terminal() {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-4 sm:p-8 overflow-hidden">
-      {/* Matrix Rain Background */}
-      <MatrixRain />
+      {/* Interactive Background */}
+      <InteractiveBackground />
 
       <div className="relative z-10 w-full max-w-5xl flex flex-col items-center gap-6">
         {/* Avatar Section */}
