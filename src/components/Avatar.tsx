@@ -36,7 +36,7 @@ export default function Avatar() {
       <motion.div
         whileHover={{ scale: 1.05, rotate: 5 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-green-500/50 shadow-2xl"
+        className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-3 border-green-500/50 shadow-2xl"
       >
         <Image
           src="/Developer programmer-Программист-разработчик.jpeg"

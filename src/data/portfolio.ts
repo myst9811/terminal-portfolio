@@ -119,7 +119,7 @@ blockchain implementations to AI-powered documentation systems.`,
     instagram: "https://instagram.com/shannen_1197",
   },
 
-  resume: "https://drive.google.com/file/d/1tiGbnId9denD3693wvMVifmbAeaGbTIu/view?usp=drive_link", // Add your resume link here
+  resume: "/ShannenSaikia_Updated_Resume (1).pdf", 
 
   achievements: [
     "18 Public GitHub Repositories",
