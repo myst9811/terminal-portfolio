@@ -163,13 +163,13 @@ export default function Terminal() {
       {/* Interactive Background */}
       <InteractiveBackground />
 
-      <div className="relative z-10 w-full max-w-6xl h-full flex flex-col items-center justify-center gap-3 sm:gap-4 py-4">
-        {/* Avatar Section */}
+      <div className="relative z-10 w-full max-w-7xl h-full flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 py-4">
+        {/* Avatar Section - Left Side */}
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col items-center gap-2 flex-shrink-0"
+          className="flex flex-col items-center gap-4 flex-shrink-0 md:w-64"
         >
           <Avatar />
           <motion.div
@@ -181,16 +181,21 @@ export default function Terminal() {
             <h1 className="text-xl sm:text-2xl font-bold text-green-400 tracking-wider glow-text">
               SHANNEN SAIKIA
             </h1>
-            <p className="text-xs sm:text-sm text-green-300/80 mt-1">
+            <p className="text-xs sm:text-sm text-green-300/80 mt-2">
               Engineering Student @ VIT
             </p>
+            <div className="mt-4 flex flex-col gap-2 text-xs text-green-300/70">
+              <p>🎓 Computer Science</p>
+              <p>🤖 AI/ML Enthusiast</p>
+              <p>⛓️ Blockchain Developer</p>
+            </div>
           </motion.div>
         </motion.div>
 
-        {/* Terminal Window */}
+        {/* Terminal Window - Right Side */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           className="w-full flex-1 flex flex-col min-h-0"
         >

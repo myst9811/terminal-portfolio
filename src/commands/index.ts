@@ -214,15 +214,32 @@ Social Media:
   resume: {
     name: 'resume',
     description: 'Download my resume',
-    execute: () => ({
-      type: 'text',
-      content: `
-Opening resume...
-Link: ${portfolioData.resume}
+    execute: () => {
+      // Open resume in new tab if it exists
+      if (portfolioData.resume) {
+        if (typeof window !== 'undefined') {
+          window.open(portfolioData.resume, '_blank');
+        }
+        return {
+          type: 'text',
+          content: `
+✓ Opening resume in a new tab...
 
-Note: Update your resume link in src/data/portfolio.ts
-      `,
-    }),
+Resume URL: ${portfolioData.resume}
+
+If the resume didn't open, you can access it directly at the link above.
+          `,
+        };
+      }
+      return {
+        type: 'text',
+        content: `
+✗ Resume not available yet.
+
+Please add your resume link in src/data/portfolio.ts
+        `,
+      };
+    },
   },
 
   achievements: {
