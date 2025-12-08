@@ -163,7 +163,7 @@ export default function Terminal() {
       {/* Interactive Background */}
       <InteractiveBackground />
 
-      <div className="relative z-10 w-full max-w-7xl h-full flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 py-4">
+      <div className="relative z-10 w-full max-w-7xl h-full flex flex-col md:flex-row items-stretch gap-4 sm:gap-6 p-4">
         {/* Avatar Section - Left Side */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
