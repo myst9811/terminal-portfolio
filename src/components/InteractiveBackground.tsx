@@ -9,11 +9,12 @@ interface Particle {
   vx: number;
   vy: number;
   size: number;
+  life: number;
 }
 
 export default function InteractiveBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameRef = useRef<number>();
 
@@ -32,84 +33,47 @@ export default function InteractiveBackground() {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Create particles
-    const createParticles = () => {
-      const particles: Particle[] = [];
-      const particleCount = Math.floor((window.innerWidth * window.innerHeight) / 15000);
-
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          size: Math.random() * 2 + 1,
-        });
-      }
-      return particles;
-    };
-
-    particlesRef.current = createParticles();
-
     // Mouse move handler
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
+
+      // Create new particles on hover
+      for (let i = 0; i < 2; i++) {
+        particlesRef.current.push({
+          x: e.clientX + (Math.random() - 0.5) * 20,
+          y: e.clientY + (Math.random() - 0.5) * 20,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5 - 0.3,
+          size: Math.random() * 2 + 0.5,
+          life: 1,
+        });
+      }
     };
+
     window.addEventListener('mousemove', handleMouseMove);
 
     // Animation loop
     const animate = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particlesRef.current.forEach((particle, i) => {
+      // Update and draw particles
+      particlesRef.current = particlesRef.current.filter(particle => {
         // Update position
         particle.x += particle.vx;
         particle.y += particle.vy;
+        particle.life -= 0.01;
 
-        // Bounce off edges
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        // Fade out
+        if (particle.life <= 0) return false;
 
-        // Mouse interaction
-        const dx = mousePos.x - particle.x;
-        const dy = mousePos.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 150;
-
-        if (distance < maxDistance) {
-          const force = (maxDistance - distance) / maxDistance;
-          const angle = Math.atan2(dy, dx);
-          particle.vx -= Math.cos(angle) * force * 0.03;
-          particle.vy -= Math.sin(angle) * force * 0.03;
-        }
-
-        // Damping
-        particle.vx *= 0.99;
-        particle.vy *= 0.99;
-
-        // Draw particle
-        const opacity = distance < maxDistance ? 1 - (distance / maxDistance) * 0.5 : 0.3;
+        // Draw particle with fading effect
+        const opacity = particle.life * 0.4;
         ctx.fillStyle = `rgba(34, 197, 94, ${opacity})`;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
 
-        // Draw connections
-        particlesRef.current.slice(i + 1).forEach(otherParticle => {
-          const dx2 = particle.x - otherParticle.x;
-          const dy2 = particle.y - otherParticle.y;
-          const dist = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-
-          if (dist < 120) {
-            ctx.strokeStyle = `rgba(34, 197, 94, ${(1 - dist / 120) * 0.2})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.stroke();
-          }
-        });
+        return true;
       });
 
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -124,52 +88,52 @@ export default function InteractiveBackground() {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [mousePos.x, mousePos.y]);
+  }, []);
 
   return (
     <>
-      {/* Animated gradient orbs */}
+      {/* Very subtle animated gradient orbs */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl"
+        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-3xl"
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
+          scale: [1, 1.1, 1],
+          opacity: [0.15, 0.25, 0.15],
         }}
         transition={{
-          duration: 8,
+          duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"
+        className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-3xl"
         animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.5, 0.3, 0.5],
+          scale: [1.1, 1, 1.1],
+          opacity: [0.25, 0.15, 0.25],
         }}
         transition={{
-          duration: 10,
+          duration: 15,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
 
-      {/* Canvas for particles */}
+      {/* Canvas for hover particles */}
       <canvas
         ref={canvasRef}
         className="fixed inset-0 pointer-events-none z-0"
-        style={{ opacity: 0.6 }}
+        style={{ opacity: 0.8 }}
       />
 
-      {/* Grid overlay */}
+      {/* Very subtle grid overlay */}
       <div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px)
+            linear-gradient(rgba(34, 197, 94, 0.015) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 197, 94, 0.015) 1px, transparent 1px)
           `,
-          backgroundSize: '50px 50px',
+          backgroundSize: '60px 60px',
         }}
       />
     </>
