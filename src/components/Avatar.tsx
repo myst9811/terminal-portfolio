@@ -50,7 +50,7 @@ export default function Avatar() {
         <motion.div
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
-          className="absolute inset-0 bg-gradient-to-t from-green-500/20 to-transparent"
+          className="absolute inset-0 bg-linear-to-t from-green-500/20 to-transparent"
         />
       </motion.div>
 

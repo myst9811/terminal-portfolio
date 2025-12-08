@@ -82,6 +82,15 @@ blockchain implementations to AI-powered documentation systems.`,
 
   experience: [
     {
+      role: "Core Committee Member",
+      organization: "RoboVITics Club, VIT",
+      period: "Aug 2023 - Feb 2024",
+      description: `Machine Learning and Computer Vision Projects
+• Contributed to robotics projects with a focus on Machine Learning and computer vision
+• Built jump counters and pose estimators using OpenCV and Python
+• Gained hands-on experience in ML concepts: classification, detection, and time-series analysis`,
+    },
+    {
       role: "Student",
       organization: "VIT (Vellore Institute of Technology)",
       period: "Present",
