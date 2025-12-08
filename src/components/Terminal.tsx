@@ -238,7 +238,7 @@ export default function Terminal() {
           {/* Terminal Content */}
           <div
             ref={terminalRef}
-            className="bg-black/95 text-green-400 font-mono p-4 sm:p-6 flex-1 overflow-y-auto cursor-text custom-scrollbar"
+            className="bg-black/95 text-green-400 font-mono p-4 sm:p-6 flex-1 overflow-y-scroll cursor-text custom-scrollbar min-h-0"
           >
             {/* Output History */}
             <div className="space-y-4 mb-4">
