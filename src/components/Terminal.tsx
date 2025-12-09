@@ -282,12 +282,12 @@ export default function Terminal() {
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.15 }}
-                      className={`mt-2 whitespace-pre-wrap ${
+                      className={`mt-2 whitespace-pre-wrap overflow-x-auto ${
                         entry.output.type === 'error'
                           ? 'text-red-400 glow-text-red'
                           : entry.command === '' && index === 0
-                          ? 'text-green-400 text-sm glow-text'
-                          : 'text-green-300/90 text-sm sm:text-base'
+                          ? 'text-green-400 text-xs sm:text-sm glow-text'
+                          : 'text-green-300/90 text-xs sm:text-sm'
                       }`}
                     >
                       {typeof entry.output.content === 'string'
