@@ -169,7 +169,7 @@ export default function Terminal() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col items-center gap-4 flex-shrink-0 md:w-64"
+          className="flex flex-col items-center justify-center gap-4 flex-shrink-0 md:w-64"
         >
           <Avatar />
           <motion.div
@@ -197,11 +197,11 @@ export default function Terminal() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="w-full flex-1 flex flex-col min-h-0"
+          className="flex-1 flex flex-col min-h-0 max-h-full"
         >
           {/* Terminal Window */}
           <div
-            className="bg-black/90 backdrop-blur-sm rounded-lg shadow-2xl border border-green-500/20 overflow-hidden terminal-glow flex flex-col h-full"
+            className="bg-black/90 backdrop-blur-sm rounded-lg shadow-2xl border border-green-500/20 terminal-glow flex flex-col h-full overflow-hidden"
             onClick={handleTerminalClick}
           >
             {/* Terminal Header/Title Bar */}
