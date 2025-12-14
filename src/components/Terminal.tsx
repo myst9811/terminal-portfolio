@@ -14,23 +14,18 @@ export default function Terminal() {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [isTyping, setIsTyping] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const outputEndRef = useRef<HTMLDivElement>(null);
+  const entryCounterRef = useRef(0);
 
-  // Auto-focus input on mount and when clicking terminal
+  // Mount and setup
   useEffect(() => {
+    setMounted(true);
     inputRef.current?.focus();
-  }, []);
 
-  // Scroll to bottom when history updates
-  useEffect(() => {
-    outputEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [history]);
-
-  // Display welcome banner on mount
-  useEffect(() => {
     const welcomeEntry: HistoryEntry = {
       command: '',
       output: { type: 'text', content: asciiArt },
@@ -38,6 +33,13 @@ export default function Terminal() {
     };
     setHistory([welcomeEntry]);
   }, []);
+
+  // Scroll to bottom when history updates
+  useEffect(() => {
+    if (mounted) {
+      outputEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [history, mounted]);
 
   const handleCommand = async (cmd: string) => {
     const trimmedCmd = cmd.trim();
@@ -245,14 +247,14 @@ export default function Terminal() {
               <AnimatePresence mode="popLayout">
                 {history.map((entry, index) => (
                   <motion.div
-                    key={`${entry.timestamp.getTime()}-${index}`}
+                    key={`entry-${index}`}
                     initial={{ opacity: 0, x: -20, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, x: 20, filter: 'blur(4px)' }}
                     transition={{
                       duration: 0.3,
                       ease: "easeOut",
-                      delay: index * 0.05
+                      delay: mounted ? index * 0.05 : 0
                     }}
                   >
                     {entry.command && (
