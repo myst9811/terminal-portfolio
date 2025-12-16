@@ -111,19 +111,20 @@ blockchain implementations to AI-powered documentation systems.`,
     email: "shannen.saikia@gmail.com", 
     location: "Mumbai, India",
     github: "myst9811",
+    phoneNo: "+91 9619383720"
   },
 
   social: {
     github: "https://github.com/myst9811",
     linkedin: "https://linkedin.com/in/shannen-saikia-1a1ab324a",
     instagram: "https://instagram.com/shannen_1197",
+    twitter: "https://x.com/SaikiaShannen"
   },
 
   resume: "/ShannenSaikia_Updated_Resume (1).pdf", 
 
   achievements: [
     "18 Public GitHub Repositories",
-    "YOLO Badge on GitHub",
     "Built projects in 6+ programming languages",
     "Contributed to AI/ML and Blockchain projects",
   ],
