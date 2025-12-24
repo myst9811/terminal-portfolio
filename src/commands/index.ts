@@ -188,6 +188,7 @@ ${eduList}
 Contact Information:
 -------------------
   Email:    ${portfolioData.contact.email}
+  Phone:    ${portfolioData.contact.phoneNo}
   Location: ${portfolioData.contact.location}
   GitHub:   https://github.com/${portfolioData.contact.github}
 
