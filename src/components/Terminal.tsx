@@ -7,6 +7,7 @@ import { asciiArt } from '../data/portfolio';
 import type { HistoryEntry } from '../types';
 import Avatar from './Avatar';
 import InteractiveBackground from './InteractiveBackground';
+import { linkify } from '../utils/linkify';
 
 export default function Terminal() {
   const [input, setInput] = useState('');
@@ -293,7 +294,7 @@ export default function Terminal() {
                       }`}
                     >
                       {typeof entry.output.content === 'string'
-                        ? entry.output.content
+                        ? linkify(entry.output.content)
                         : entry.output.content}
                     </motion.div>
                   </motion.div>
