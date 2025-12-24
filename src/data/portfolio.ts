@@ -91,10 +91,18 @@ blockchain implementations to AI-powered documentation systems.`,
 • Gained hands-on experience in ML concepts: classification, detection, and time-series analysis`,
     },
     {
-      role: "Student",
+      role: "Computer Science Student",
       organization: "VIT (Vellore Institute of Technology)",
       period: "Present",
-      description: "Pursuing engineering with a focus on computer science, AI/ML, and blockchain technology",
+      description: `Coursework & Core Foundation:
+• Artificial Intelligence - Machine learning algorithms, neural networks, and AI systems
+• Data Structures and Algorithms - Advanced problem-solving and algorithmic design
+• Operating Systems - Process management, memory management, and system programming
+• Computer Networks - Network protocols, TCP/IP, and distributed systems
+• Object-Oriented Programming - Design patterns and software engineering principles
+• Computer Architecture and Organization - Hardware design and system architecture
+• Database Systems - SQL, NoSQL, database design, and query optimization
+• Building a strong foundation in computer science fundamentals and practical applications`,
     },
   ],
 
