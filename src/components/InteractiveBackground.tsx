@@ -25,19 +25,17 @@ export default function InteractiveBackground() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size
     const setCanvasSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
-
-    // Mouse move handler
+    
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
 
-      // Create new particles on hover
+
       for (let i = 0; i < 2; i++) {
         particlesRef.current.push({
           x: e.clientX + (Math.random() - 0.5) * 20,
@@ -52,7 +50,7 @@ export default function InteractiveBackground() {
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Animation loop
+    
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
