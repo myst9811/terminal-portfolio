@@ -25,6 +25,27 @@ cross-chain bridges and Kafka-powered streaming platforms to AI-powered SaaS pro
 
   projects: [
     {
+      name: "CoS-OS",
+      description: "AI-powered Chief of Staff assistant platform. TypeScript monorepo (Turborepo) with Next.js 15 frontend, Express/Lambda API, BullMQ job queues, pgvector semantic search, and Claude Sonnet via AWS Bedrock. Features multi-channel ingestion (Gmail, MS Graph, Otter.ai), PII redaction via Microsoft Presidio, 7-tier priority triage, and tamper-proof SHA-256 audit logging. Deployed on AWS (CloudFront, ECS Fargate, RDS, ElastiCache).",
+      tech: ["TypeScript", "Next.js", "AWS", "Claude AI", "PostgreSQL", "pgvector", "BullMQ", "Redis", "Turborepo"],
+      link: "",
+      featured: true,
+    },
+    {
+      name: "Nexus Cross-Chain Bridge",
+      description: "Trustless Ethereum ↔ Solana cross-chain bridge. Ethereum side: Solidity smart contracts (OpenZeppelin, Hardhat, ethers.js v6) with ERC20 wrapping and nonce-based replay prevention. Solana side: Rust/Anchor programs with PDA-based token custody, SPL token locking, and validator-signed unlock proofs.",
+      tech: ["Solidity", "Rust", "Anchor", "Hardhat", "Ethereum", "Solana", "ethers.js", "Web3"],
+      link: "https://github.com/myst9811/nexus-ethereum",
+      featured: true,
+    },
+    {
+      name: "Crypto Data Platform",
+      description: "Real-time crypto market data pipeline ingesting multi-exchange WebSocket feeds (Binance, Coinbase, Kraken) via Apache Kafka, processing with PySpark Streaming and Delta Lake storage, and serving arbitrage alerts and VWAP analytics through a FastAPI REST layer and Streamlit dashboard.",
+      tech: ["Python", "Apache Kafka", "PySpark", "Delta Lake", "FastAPI", "Streamlit", "Docker"],
+      link: "https://github.com/myst9811/crypto-data-platform",
+      featured: true,
+    },
+    {
       name: "FinanceFlow",
       description: "Personal Finance Analytics Engine - Intelligent financial data aggregation and analysis platform with ML-powered insights",
       tech: ["TypeScript", "Next.js", "Machine Learning", "Data Analytics"],
@@ -78,6 +99,20 @@ cross-chain bridges and Kafka-powered streaming platforms to AI-powered SaaS pro
       description: "Machine learning model for stock price prediction and analysis",
       tech: ["Python", "Machine Learning", "Data Science"],
       link: "https://github.com/myst9811/stock-predictor",
+      featured: false,
+    },
+    {
+      name: "E-Commerce Order Analytics ETL",
+      description: "Robust ETL pipeline using medallion architecture (Bronze → Silver → Gold layers) to transform raw e-commerce transactional data into analytics-ready business insights with data quality validation at each stage.",
+      tech: ["Python", "Pandas", "ETL", "Data Engineering", "Medallion Architecture"],
+      link: "https://github.com/myst9811/E-Commerce-Order-Analytics-ETL-Pipeline",
+      featured: false,
+    },
+    {
+      name: "Olympic Medals Analysis",
+      description: "120-year Olympic history analysis (1896–2016) exploring medal tallies, gender diversity trends, country performance, and athlete statistics using Pandas, Matplotlib, and Seaborn in a Jupyter notebook pipeline.",
+      tech: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Data Science"],
+      link: "https://github.com/myst9811/olympic-medals-analysis",
       featured: false,
     },
   ],
