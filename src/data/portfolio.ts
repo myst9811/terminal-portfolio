@@ -1,23 +1,25 @@
 export const portfolioData = {
   name: "Shannen Saikia",
-  title: "Engineering Student | AI/ML Enthusiast | Problem Solver",
+  title: "Engineering Student | Data Engineer | AI/ML Enthusiast | Problem Solver",
   location: "Mumbai, India",
   university: "VIT (Vellore Institute of Technology)",
 
-  about: `Hi! I'm Shannen, an engineering student at VIT with a passion for building, breaking,
-and exploring technology. I'm an enthusiastic problem solver with a keen interest in AI/ML and mathematics.
+  about: `Hi! I'm Shannen, an engineering student at VIT and Data Engineering Intern at DynPro Inc.,
+with a passion for building, breaking, and exploring technology. I'm an enthusiastic problem solver
+with a keen interest in AI/ML, data engineering, and distributed systems.
 
-I love working on challenging projects that involve blockchain technology, artificial intelligence,
-and systems programming. My journey in tech has led me to explore diverse areas from Rust-based
-blockchain implementations to AI-powered documentation systems.`,
+I love working on challenging projects spanning blockchain technology, artificial intelligence,
+real-time data pipelines, and systems programming. My journey in tech ranges from Rust-based
+cross-chain bridges and Kafka-powered streaming platforms to AI-powered SaaS products.`,
 
   skills: {
-    languages: ["TypeScript", "Python", "Rust", "Go", "JavaScript", "C++"],
-    aiml: ["Machine Learning", "Deep Learning", "RAG Systems", "Neural Networks", "Data Analysis"],
-    blockchain: ["Smart Contracts", "Bitcoin Mining", "Blockchain Simulation", "Web3"],
+    languages: ["TypeScript", "Python", "Rust", "Go", "JavaScript", "SQL", "C++"],
+    aiml: ["Machine Learning", "Deep Learning", "RAG Systems", "Neural Networks", "LLM Integration", "Vector Search", "Claude API", "Data Analysis"],
+    blockchain: ["Smart Contracts", "Bitcoin Mining", "Blockchain Simulation", "Solana", "Anchor", "Cross-chain", "Web3"],
+    dataengineering: ["ETL Pipelines", "Medallion Architecture", "Apache Kafka", "PySpark", "Delta Lake", "Data Analytics"],
     frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    backend: ["Node.js", "Express", "PostgreSQL", "MongoDB", "REST APIs"],
-    tools: ["Git", "Docker", "Jupyter", "VS Code", "Linux"],
+    backend: ["Node.js", "Express", "PostgreSQL", "MongoDB", "BullMQ", "Redis", "Drizzle ORM", "AWS Lambda", "REST APIs"],
+    tools: ["Git", "Docker", "AWS", "Turborepo", "Jupyter", "VS Code", "Linux"],
     mathematics: ["Algorithm Design", "Computational Mathematics", "Statistical Analysis"],
   },
 
