@@ -119,6 +119,24 @@ cross-chain bridges and Kafka-powered streaming platforms to AI-powered SaaS pro
 
   experience: [
     {
+      role: "Data Engineering Intern & Full Stack Developer",
+      organization: "DynPro Inc.",
+      period: "Jan 2026 - Present",
+      description: `Data engineering and client-facing full stack development
+• Designed and built internal survey platform to measure AI tool adoption impact across engineering teams
+• Developed mts-fitgap-pipeline: Node.js HTML generator producing pixel-perfect Fit-Gap assessment tables for McCarthy Tire Service (client)
+• Built mts-L1-L2-diagram-review: business process diagram review platform for L1/L2 process documentation (McCarthy Tire Service)
+• Delivered mts-doc-editor for enterprise document management workflows`,
+    },
+    {
+      role: "Freelance Software Engineer",
+      organization: "TruEdge Financial Services Pvt Ltd.",
+      period: "Dec 2025 - Present",
+      description: `Web development for a financial consulting firm
+• Built client-facing landing pages using modern frameworks (Next.js, Tailwind CSS)
+• Developed and iterated on multiple UI versions for lead generation and services presentation`,
+    },
+    {
       role: "Core Committee Member",
       organization: "RoboVITics Club, VIT",
       period: "Aug 2023 - Feb 2024",
@@ -169,9 +187,12 @@ cross-chain bridges and Kafka-powered streaming platforms to AI-powered SaaS pro
   resume: "/ShannenSaikia_Updated_Resume (1).pdf", 
 
   achievements: [
-    "18 Public GitHub Repositories",
-    "Built projects in 6+ programming languages",
-    "Contributed to AI/ML and Blockchain projects",
+    "21 Public GitHub Repositories",
+    "Built projects in 7+ programming languages",
+    "Full-stack AI SaaS with AWS & Claude AI (CoS-OS)",
+    "Cross-chain blockchain bridge (Ethereum ↔ Solana)",
+    "Data Engineering Intern at DynPro Inc.",
+    "Contributed to AI/ML, Blockchain, and Data Engineering projects",
   ],
 };
 
