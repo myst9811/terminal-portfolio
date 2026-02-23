@@ -70,6 +70,9 @@ Programming Languages:
 AI/ML & Data Science:
   ${skills.aiml.join(', ')}
 
+Data Engineering:
+  ${skills.dataengineering.join(', ')}
+
 Blockchain & Web3:
   ${skills.blockchain.join(', ')}
 
@@ -98,7 +101,7 @@ Mathematics & Algorithms:
 ${index + 1}. ${project.name}
    ${project.description}
    Tech: ${project.tech.join(', ')}
-   Link: ${project.link}
+   ${project.link ? `Link: ${project.link}` : 'Repo: Private — available on request'}
       `).join('\n');
 
       return {
@@ -122,7 +125,7 @@ Type 'all-projects' to see all projects.
 ${index + 1}. ${project.name}
    ${project.description}
    Tech: ${project.tech.join(', ')}
-   Link: ${project.link}
+   ${project.link ? `Link: ${project.link}` : 'Repo: Private — available on request'}
       `).join('\n');
 
       return {

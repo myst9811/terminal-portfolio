@@ -205,8 +205,8 @@ export const asciiArt = `
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-👨‍💻 Computer Science Engineering Student @ VIT
-🤖 AI/ML Enthusiast • ⛓️ Blockchain Developer • 🚀 Problem Solver
+👨‍💻 CS Engineering Student @ VIT | Data Engineering Intern @ DynPro Inc.
+🤖 AI/ML Enthusiast • ⛓️ Blockchain Developer • 📊 Data Engineer • 🚀 Problem Solver
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
