@@ -16,11 +16,22 @@ export default function Terminal() {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [isTyping, setIsTyping] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [currentTime, setCurrentTime] = useState('');
 
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const outputEndRef = useRef<HTMLDivElement>(null);
   const entryCounterRef = useRef(0);
+
+  // Live clock
+  useEffect(() => {
+    const update = () => setCurrentTime(
+      new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    );
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   // Mount and setup
   useEffect(() => {
@@ -187,10 +198,23 @@ export default function Terminal() {
             <p className="text-xs sm:text-sm text-green-300/80 mt-2">
               Engineering Student @ VIT
             </p>
-            <div className="mt-4 flex flex-col gap-2 text-xs text-green-300/70">
-              <p>🎓 Computer Science</p>
-              <p>🤖 AI/ML Enthusiast</p>
-              <p>⛓️ Blockchain Developer</p>
+            <div className="mt-3 flex items-center justify-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              </span>
+              <span className="text-xs text-green-400/70">Available for opportunities</span>
+            </div>
+            <div className="mt-4 flex flex-col gap-2">
+              {[
+                { label: 'CS Engineering', cls: 'bg-green-500/10 text-green-300 border-green-500/25' },
+                { label: 'AI / ML', cls: 'bg-blue-500/10 text-blue-300 border-blue-500/25' },
+                { label: 'Blockchain', cls: 'bg-purple-500/10 text-purple-300 border-purple-500/25' },
+              ].map(({ label, cls }) => (
+                <span key={label} className={`text-xs px-3 py-1 rounded-full border text-center ${cls}`}>
+                  {label}
+                </span>
+              ))}
             </div>
           </motion.div>
         </motion.div>
@@ -233,8 +257,9 @@ export default function Terminal() {
                   visitor@shannen-portfolio:~$
                 </span>
               </div>
-              <div className="text-xs text-green-400/70 font-semibold">
-                Terminal - Portfolio
+              <div className="flex items-center gap-3 text-xs font-mono">
+                <span className="text-green-400/50 hidden sm:inline">Terminal — Portfolio</span>
+                <span className="text-green-400/80 tabular-nums">{currentTime}</span>
               </div>
             </motion.div>
 
@@ -265,19 +290,24 @@ export default function Terminal() {
                         transition={{ delay: 0.1 }}
                         className="flex items-start gap-2 text-green-400"
                       >
-                        <motion.span
-                          animate={{
-                            textShadow: [
-                              '0 0 4px rgba(34, 197, 94, 0.5)',
-                              '0 0 8px rgba(34, 197, 94, 0.8)',
-                              '0 0 4px rgba(34, 197, 94, 0.5)',
-                            ]
-                          }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="text-green-500 font-bold"
-                        >
-                          $
-                        </motion.span>
+                        <span className="flex items-center gap-0.5 flex-shrink-0 font-mono">
+                          <span className="text-cyan-400/70 hidden sm:inline">visitor@shannen</span>
+                          <span className="text-gray-600 hidden sm:inline">:</span>
+                          <span className="text-blue-400/70 hidden sm:inline">~</span>
+                          <motion.span
+                            animate={{
+                              textShadow: [
+                                '0 0 4px rgba(34, 197, 94, 0.5)',
+                                '0 0 8px rgba(34, 197, 94, 0.8)',
+                                '0 0 4px rgba(34, 197, 94, 0.5)',
+                              ]
+                            }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                            className="text-green-500 font-bold"
+                          >
+                            $
+                          </motion.span>
+                        </span>
                         <span className="text-green-300">{entry.command}</span>
                       </motion.div>
                     )}
@@ -305,7 +335,12 @@ export default function Terminal() {
 
             {/* Input Line */}
             <div className="flex items-center gap-2 mt-4">
-              <span className="text-green-500 font-bold">$</span>
+              <span className="flex items-center gap-0.5 flex-shrink-0 font-mono">
+                <span className="text-cyan-400/70 hidden sm:inline">visitor@shannen</span>
+                <span className="text-gray-600 hidden sm:inline">:</span>
+                <span className="text-blue-400/70 hidden sm:inline">~</span>
+                <span className="text-green-500 font-bold">$</span>
+              </span>
               <input
                 ref={inputRef}
                 type="text"
