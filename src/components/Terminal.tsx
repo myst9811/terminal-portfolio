@@ -31,7 +31,6 @@ export default function Terminal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const outputEndRef = useRef<HTMLDivElement>(null);
-  const hasBootedRef = useRef(false);
 
   // Live clock
   useEffect(() => {
@@ -81,7 +80,7 @@ export default function Terminal() {
     }
   }, []);
 
-  // Mount, auto-boot, and mobile detection
+  // Mount and mobile detection
   useEffect(() => {
     setMounted(true);
     inputRef.current?.focus();
@@ -98,35 +97,10 @@ export default function Terminal() {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    // Auto-boot: simulate typing "help" then executing it
-    let startTimer: ReturnType<typeof setTimeout>;
-    let intervalId: ReturnType<typeof setInterval>;
-
-    if (!hasBootedRef.current) {
-      hasBootedRef.current = true;
-      const chars = 'help';
-      let i = 0;
-      startTimer = setTimeout(() => {
-        intervalId = setInterval(() => {
-          i++;
-          setInput(chars.slice(0, i));
-          if (i === chars.length) {
-            clearInterval(intervalId);
-            setTimeout(() => {
-              handleCommand('help');
-              setInput('');
-            }, 250);
-          }
-        }, 100);
-      }, 800);
-    }
-
     return () => {
       window.removeEventListener('resize', checkMobile);
-      clearTimeout(startTimer);
-      clearInterval(intervalId);
     };
-  }, [handleCommand]);
+  }, []);
 
   // Scroll to bottom when history updates
   useEffect(() => {
