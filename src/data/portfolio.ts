@@ -132,9 +132,12 @@ cross-chain bridges and Kafka-powered streaming platforms to AI-powered SaaS pro
       role: "Freelance Software Engineer",
       organization: "TruEdge Financial Services Pvt Ltd.",
       period: "Dec 2025 - Present",
-      description: `Web development for a financial consulting firm
+      description: `Web development and product engineering for a financial consulting firm
 • Built client-facing landing pages using modern frameworks (Next.js, Tailwind CSS)
-• Developed and iterated on multiple UI versions for lead generation and services presentation`,
+• Developed and iterated on multiple UI versions for lead generation and services presentation
+• Engineered TRIT — a full-stack investor risk profiling tool featuring a 5-step, 20-question assessment engine, composite risk scoring across 4 weighted dimensions (capacity, tolerance, requirement, structural), and a radar chart output dashboard
+• Integrated Anthropic API to generate personalised advisory narratives; implemented stress simulations against historical market scenarios (2008 crash, COVID-19)
+• Built PDF report generation, Supabase-backed data persistence, and a password-protected advisor admin panel with CSV export and assessment review workflows`,
     },
     {
       role: "Core Committee Member",
@@ -150,7 +153,9 @@ cross-chain bridges and Kafka-powered streaming platforms to AI-powered SaaS pro
       organization: "VIT (Vellore Institute of Technology)",
       period: "Present",
       description: `Core Foundation:
-• Building a strong foundation in computer science fundamentals and practical applications`,
+• Building a strong foundation in computer science fundamentals and practical applications
+• Pursuing coursework in Data Structures, Algorithms, Operating Systems, Database Systems, and Computer Networks
+• Applying theoretical knowledge through independent projects spanning systems programming, distributed systems, and applied AI/ML`,
     },
   ],
 
