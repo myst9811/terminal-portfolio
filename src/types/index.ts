@@ -6,7 +6,7 @@ export interface Command {
 
 export interface CommandOutput {
   type: 'text' | 'component' | 'error';
-  content: string | React.ReactNode;
+  content: string | React.ReactNode | ((onCommand: (cmd: string) => void) => React.ReactNode);
 }
 
 export interface HistoryEntry {
