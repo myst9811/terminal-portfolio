@@ -176,7 +176,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="relative h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-3 sm:p-6 overflow-hidden">
+    <div className="relative h-screen bg-gradient-to-br from-gray-900 via-[#080f08] to-gray-900 flex items-center justify-center p-3 sm:p-6 overflow-hidden">
       <InteractiveBackground />
 
       <div className="relative z-10 w-full max-w-7xl h-full flex flex-col md:flex-row items-stretch gap-4 sm:gap-6 p-4">
@@ -240,7 +240,7 @@ export default function Terminal() {
           className="flex-1 flex flex-col min-h-0 max-h-full"
         >
           <div
-            className="bg-black/90 backdrop-blur-sm rounded-lg shadow-2xl border border-green-500/20 terminal-glow flex flex-col h-full overflow-hidden"
+            className="bg-[#0a1209]/95 backdrop-blur-sm rounded-lg shadow-2xl border border-green-500/20 terminal-glow flex flex-col h-full overflow-hidden"
             onClick={handleTerminalClick}
           >
             {/* Title Bar */}
@@ -286,7 +286,7 @@ export default function Terminal() {
             {/* Terminal Content */}
             <div
               ref={terminalRef}
-              className="bg-black/95 text-green-400 font-mono p-4 sm:p-6 flex-1 overflow-y-scroll cursor-text custom-scrollbar min-h-0"
+              className="bg-[#080f08] text-green-400 font-mono p-4 sm:p-6 flex-1 overflow-y-scroll cursor-text custom-scrollbar min-h-0"
             >
               {recruiterMode ? (
                 <RecruiterView onSwitchToCLI={() => setRecruiterMode(false)} />
@@ -321,9 +321,9 @@ export default function Terminal() {
                                 <motion.span
                                   animate={{
                                     textShadow: [
-                                      '0 0 4px rgba(34, 197, 94, 0.5)',
-                                      '0 0 8px rgba(34, 197, 94, 0.8)',
-                                      '0 0 4px rgba(34, 197, 94, 0.5)',
+                                      '0 0 4px rgba(24, 224, 0, 0.5)',
+                                      '0 0 8px rgba(115, 250, 145, 0.8)',
+                                      '0 0 4px rgba(24, 224, 0, 0.5)',
                                     ],
                                   }}
                                   transition={{ duration: 2, repeat: Infinity }}

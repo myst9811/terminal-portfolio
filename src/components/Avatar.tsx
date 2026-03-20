@@ -19,9 +19,9 @@ export default function Avatar() {
       <motion.div
         animate={{
           boxShadow: [
-            '0 0 20px rgba(34, 197, 94, 0.3)',
-            '0 0 40px rgba(34, 197, 94, 0.5)',
-            '0 0 20px rgba(34, 197, 94, 0.3)',
+            '0 0 20px rgba(24, 224, 0, 0.25)',
+            '0 0 40px rgba(115, 250, 145, 0.45)',
+            '0 0 20px rgba(24, 224, 0, 0.25)',
           ],
         }}
         transition={{
