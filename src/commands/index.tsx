@@ -1,47 +1,8 @@
 import { portfolioData, asciiArt } from '../data/portfolio';
 import type { Command, CommandOutput } from '../types';
 import HelpOutput from '../components/HelpOutput';
-
-const projectCard = (project: typeof portfolioData.projects[0], index: number): string => {
-  const W = 50;
-  const row = (s: string) => `│ ${s.slice(0, W - 2).padEnd(W - 2)} │`;
-  const num = String(index + 1).padStart(2, '0');
-  const badge = project.link ? '' : ' [PRIVATE]';
-  const nameHeader = `${num}  ${project.name}${badge}`;
-  const desc = project.description;
-  // word-wrap description into lines of W-2 chars
-  const maxLineLen = W - 2;
-  const words = desc.split(' ');
-  const descLines: string[] = [];
-  let current = '';
-  for (const word of words) {
-    const candidate = current ? `${current} ${word}` : word;
-    if (candidate.length <= maxLineLen) {
-      current = candidate;
-    } else {
-      if (current) descLines.push(current);
-      current = word;
-      if (descLines.length >= 2) { current = current + '…'; break; }
-    }
-  }
-  if (current && descLines.length < 3) descLines.push(current);
-
-  const techStr = project.tech.slice(0, 4).join(' · ') + (project.tech.length > 4 ? ` +${project.tech.length - 4}` : '');
-  const linkStr = project.link
-    ? project.link.replace('https://github.com/', 'github.com/')
-    : 'Private — available on request';
-
-  return [
-    `┌${'─'.repeat(W)}┐`,
-    row(nameHeader),
-    `├${'─'.repeat(W)}┤`,
-    ...descLines.map(l => row(l)),
-    row(''),
-    row(`Stack  ${techStr}`),
-    row(`Link   ${linkStr}`),
-    `└${'─'.repeat(W)}┘`,
-  ].join('\n');
-};
+import ProjectsOutput from '../components/ProjectsOutput';
+import ExperienceOutput from '../components/ExperienceOutput';
 
 export const commands: Record<string, Command> = {
   help: {
@@ -119,59 +80,28 @@ Mathematics & Algorithms:
   projects: {
     name: 'projects',
     description: 'See featured projects',
-    execute: () => {
-      const featuredProjects = portfolioData.projects.filter(p => p.featured);
-      const cards = featuredProjects.map((p, i) => projectCard(p, i)).join('\n\n');
-      return {
-        type: 'text',
-        content: `
-Featured Projects:
------------------
-
-${cards}
-
-Type 'all-projects' to see all projects.
-        `,
-      };
-    },
+    execute: () => ({
+      type: 'component' as const,
+      content: <ProjectsOutput projects={portfolioData.projects.filter(p => p.featured)} showAll={false} />,
+    }),
   },
 
   'all-projects': {
     name: 'all-projects',
     description: 'View all projects',
-    execute: () => {
-      const cards = portfolioData.projects.map((p, i) => projectCard(p, i)).join('\n\n');
-      return {
-        type: 'text',
-        content: `
-All Projects:
-------------
-
-${cards}
-        `,
-      };
-    },
+    execute: () => ({
+      type: 'component' as const,
+      content: <ProjectsOutput projects={portfolioData.projects} showAll={true} />,
+    }),
   },
 
   experience: {
     name: 'experience',
     description: 'My work experience',
-    execute: () => {
-      const expList = portfolioData.experience.map((exp, index) => `
-${index + 1}. ${exp.role} at ${exp.organization}
-   Period: ${exp.period}
-   ${exp.description}
-      `).join('\n');
-
-      return {
-        type: 'text',
-        content: `
-Experience:
-----------
-${expList}
-        `,
-      };
-    },
+    execute: () => ({
+      type: 'component' as const,
+      content: <ExperienceOutput experience={portfolioData.experience} />,
+    }),
   },
 
   education: {
