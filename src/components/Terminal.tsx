@@ -233,22 +233,27 @@ export default function Terminal() {
               </span>
               <span className="text-xs text-green-400/70">Available for opportunities</span>
             </div>
-            <div className="mt-4 flex flex-col gap-2">
-              {[
-                { label: 'CS Engineering', cls: 'bg-green-500/10 text-green-300 border-green-500/25' },
-                { label: 'AI / ML', cls: 'bg-blue-500/10 text-blue-300 border-blue-500/25' },
-                { label: 'Blockchain', cls: 'bg-purple-500/10 text-purple-300 border-purple-500/25' },
-              ].map(({ label, cls }) => (
-                <motion.button
-                  key={label}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleCommand(PILL_COMMANDS[label])}
-                  className={`text-xs px-3 py-1 rounded-full border text-center cursor-pointer transition-all ${cls}`}
-                >
-                  {label}
-                </motion.button>
-              ))}
+            <div className="mt-5 w-full">
+              <p className="text-[10px] text-green-500/25 font-mono uppercase tracking-widest mb-2 text-left px-1">
+                Focus Areas
+              </p>
+              <div className="space-y-0.5">
+                {[
+                  { label: 'CS Engineering', borderCls: 'border-green-500/30 hover:border-green-400/80', textCls: 'text-green-400/40 hover:text-green-300' },
+                  { label: 'AI / ML', borderCls: 'border-blue-500/30 hover:border-blue-400/80', textCls: 'text-blue-400/40 hover:text-blue-300' },
+                  { label: 'Blockchain', borderCls: 'border-purple-500/30 hover:border-purple-400/80', textCls: 'text-purple-400/40 hover:text-purple-300' },
+                ].map(({ label, borderCls, textCls }) => (
+                  <motion.button
+                    key={label}
+                    whileHover={{ x: 5 }}
+                    whileTap={{ x: 2, scale: 0.98 }}
+                    onClick={() => handleCommand(PILL_COMMANDS[label])}
+                    className={`w-full flex items-center pl-3 py-1.5 font-mono text-xs border-l-2 transition-all text-left ${borderCls} ${textCls}`}
+                  >
+                    {label}
+                  </motion.button>
+                ))}
+              </div>
             </div>
           </motion.div>
         </motion.div>
