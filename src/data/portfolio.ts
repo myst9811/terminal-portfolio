@@ -1,6 +1,6 @@
 export const portfolioData = {
   name: "Shannen Saikia",
-  title: "Engineering Student | Data Engineer | AI/ML Enthusiast | Problem Solver",
+  title: "Engineering Student | Problem Solver",
   location: "Mumbai, India",
   university: "VIT (Vellore Institute of Technology)",
 
@@ -198,8 +198,7 @@ export const asciiArt = `
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-👨‍💻 CS Engineering Student @ VIT | Data Engineering Intern @ DynPro Inc.
-🤖 AI/ML Enthusiast • ⛓️ Blockchain Developer • 📊 Data Engineer • 🚀 Problem Solver
+👨‍💻 Engineering Student @ VIT  •  🚀 Problem Solver
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
