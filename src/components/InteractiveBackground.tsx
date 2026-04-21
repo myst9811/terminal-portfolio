@@ -1,139 +1,122 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-
-interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  size: number;
-  life: number;
-}
+import { useEffect, useRef } from 'react';
 
 export default function InteractiveBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
-  const particlesRef = useRef<Particle[]>([]);
-  const animationFrameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const draw = () => {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
-    const setCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      const w = (canvas.width = window.innerWidth);
+      const h = (canvas.height = window.innerHeight);
 
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, w, h);
 
-      for (let i = 0; i < 2; i++) {
-        particlesRef.current.push({
-          x: e.clientX + (Math.random() - 0.5) * 20,
-          y: e.clientY + (Math.random() - 0.5) * 20,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5 - 0.3,
-          size: Math.random() * 2 + 0.5,
-          life: 1,
-        });
-      }
-    };
+      const vpX = w / 2;
+      const vpY = h / 2;
 
-    window.addEventListener('mousemove', handleMouseMove);
+      const GREEN = 'rgba(115, 250, 145, ';
+      ctx.lineWidth = 0.6;
+      ctx.shadowColor = '#73fa91';
+      ctx.shadowBlur = 5;
 
-    
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const NUM_RADIAL = 14;
+      const NUM_CROSS = 10;
 
-      // Update and draw particles
-      particlesRef.current = particlesRef.current.filter(particle => {
-        // Update position
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-        particle.life -= 0.01;
-
-        // Fade out
-        if (particle.life <= 0) return false;
-
-        // Draw particle with fading effect
-        const opacity = particle.life * 0.4;
-        ctx.fillStyle = `rgba(34, 197, 94, ${opacity})`;
+      const line = (x1: number, y1: number, x2: number, y2: number, opacity: number) => {
+        ctx.strokeStyle = GREEN + Math.min(Math.max(opacity, 0), 0.5) + ')';
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      };
 
-        return true;
-      });
+      // Floor — radial lines from VP to bottom edge
+      for (let i = 0; i <= NUM_RADIAL; i++) {
+        const t = i / NUM_RADIAL;
+        const endX = t * w;
+        const edgeDist = Math.abs(t - 0.5) * 2;
+        line(vpX, vpY, endX, h, 0.08 + 0.38 * edgeDist);
+      }
+      // Floor — horizontal cross lines (perspective-spaced)
+      for (let i = 1; i <= NUM_CROSS; i++) {
+        const tY = Math.pow(i / NUM_CROSS, 0.5);
+        const y = vpY + (h - vpY) * tY;
+        const clipT = (y - vpY) / (h - vpY);
+        const leftX = vpX * (1 - clipT);
+        const rightX = vpX + (w - vpX) * clipT;
+        line(leftX, y, rightX, y, 0.08 + 0.32 * clipT);
+      }
 
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
+      // Ceiling — radial lines from VP to top edge
+      for (let i = 0; i <= NUM_RADIAL; i++) {
+        const t = i / NUM_RADIAL;
+        const endX = t * w;
+        const edgeDist = Math.abs(t - 0.5) * 2;
+        line(vpX, vpY, endX, 0, 0.08 + 0.38 * edgeDist);
+      }
+      // Ceiling — horizontal cross lines
+      for (let i = 1; i <= NUM_CROSS; i++) {
+        const tY = Math.pow(i / NUM_CROSS, 0.5);
+        const y = vpY - vpY * tY;
+        const clipT = (vpY - y) / vpY;
+        const leftX = vpX * (1 - clipT);
+        const rightX = vpX + (w - vpX) * clipT;
+        line(leftX, y, rightX, y, 0.08 + 0.32 * clipT);
+      }
 
-    animate();
+      // Left wall — radial lines from VP to left edge
+      for (let i = 0; i <= NUM_RADIAL; i++) {
+        const t = i / NUM_RADIAL;
+        const endY = t * h;
+        const edgeDist = Math.abs(t - 0.5) * 2;
+        line(vpX, vpY, 0, endY, 0.08 + 0.38 * edgeDist);
+      }
+      // Left wall — vertical cross lines
+      for (let i = 1; i <= NUM_CROSS; i++) {
+        const tX = Math.pow(i / NUM_CROSS, 0.5);
+        const x = vpX - vpX * tX;
+        const clipT = (vpX - x) / vpX;
+        const topY = vpY * (1 - clipT);
+        const botY = vpY + (h - vpY) * clipT;
+        line(x, topY, x, botY, 0.08 + 0.32 * clipT);
+      }
 
-    return () => {
-      window.removeEventListener('resize', setCanvasSize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
+      // Right wall — radial lines from VP to right edge
+      for (let i = 0; i <= NUM_RADIAL; i++) {
+        const t = i / NUM_RADIAL;
+        const endY = t * h;
+        const edgeDist = Math.abs(t - 0.5) * 2;
+        line(vpX, vpY, w, endY, 0.08 + 0.38 * edgeDist);
+      }
+      // Right wall — vertical cross lines
+      for (let i = 1; i <= NUM_CROSS; i++) {
+        const tX = Math.pow(i / NUM_CROSS, 0.5);
+        const x = vpX + (w - vpX) * tX;
+        const clipT = (x - vpX) / (w - vpX);
+        const topY = vpY * (1 - clipT);
+        const botY = vpY + (h - vpY) * clipT;
+        line(x, topY, x, botY, 0.08 + 0.32 * clipT);
       }
     };
+
+    draw();
+    window.addEventListener('resize', draw);
+    return () => window.removeEventListener('resize', draw);
   }, []);
 
   return (
-    <>
-      {/* Very subtle animated gradient orbs */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-3xl"
-        animate={{
-          scale: [1.1, 1, 1.1],
-          opacity: [0.25, 0.15, 0.25],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Canvas for hover particles */}
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{ opacity: 0.8 }}
-      />
-
-      {/* Very subtle grid overlay */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(34, 197, 94, 0.015) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 197, 94, 0.015) 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px',
-        }}
-      />
-    </>
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none"
+      style={{ zIndex: 0 }}
+    />
   );
 }
