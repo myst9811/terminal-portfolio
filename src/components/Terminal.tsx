@@ -176,7 +176,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="relative h-screen bg-gradient-to-br from-gray-900 via-[#080f08] to-gray-900 flex items-center justify-center p-3 sm:p-6 overflow-hidden">
+    <div className="relative h-screen bg-black flex items-center justify-center p-3 sm:p-6 overflow-hidden">
       <InteractiveBackground />
 
       <div className="relative z-10 w-full max-w-7xl h-full flex flex-col md:flex-row items-stretch gap-4 sm:gap-6 p-4">
